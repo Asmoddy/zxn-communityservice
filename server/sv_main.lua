@@ -30,6 +30,7 @@ local function releaseFromCommunityService(target)
     end
 
 	TriggerClientEvent('zxn-communityservice:client:finishCommunityService', target)
+    TriggerClientEvent("fivem-appearance:client:reloadSkin", target)
 end
 
 RegisterServerEvent('zxn-communityservice:server:endCommunityServiceCommand')
@@ -140,6 +141,7 @@ AddEventHandler('zxn-communityservice:server:sendToCommunityService', function(t
         end)
     end
 	TriggerClientEvent('zxn-communityservice:client:inCommunityService', target, actions_count)
+    TriggerClientEvent('QBCore:Notify', target, 'You have been sentenced to '..actions_count.. ' month(s) of community service')
 end)
 
 RegisterServerEvent('zxn-communityservice:server:checkIfSentenced')
@@ -191,6 +193,8 @@ QBCore.Commands.Add("pcomserv", "Put a player into community service (Police Onl
 		else
 			TriggerClientEvent("QBCore:Notify", src, Lang:t('notify.no_player'), "error")
 		end
+    else
+        TriggerClientEvent("QBCore:Notify", src, 'You are not a police officer!', "error")
 	end
 end)
 
@@ -206,5 +210,7 @@ QBCore.Commands.Add("comserv", "Put a player into community service (Admin Only)
         else
             TriggerClientEvent("QBCore:Notify", src, Lang:t('notify.no_player'), "error")
         end
+    else
+        TriggerClientEvent("QBCore:Notify", src, 'You don\'t have permissions to do this!', "error")
     end
 end)
