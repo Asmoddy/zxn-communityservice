@@ -2,9 +2,9 @@ Config = {}
 
 Config.SQL = "mysql" -- "mysql" or "ghmattimysql"
 
-Config.ServiceExtensionOnEscape		= 8
+Config.ServiceExtensionOnEscape			= 8
 
-Config.ServiceLocation 				= {x =  -442.18, y = 6017.37, z = 31.69, h = 315.0}
+Config.ServiceLocation				= {x =  -442.18, y = 6017.37, z = 31.69, h = 315.0}
 
 Config.ReleaseLocation				= {x = 426.14, y = -978.44, z = 30.71, h = 90.0}
 
