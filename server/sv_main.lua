@@ -140,8 +140,8 @@ AddEventHandler('zxn-communityservice:server:sendToCommunityService', function(t
             end
         end)
     end
-	TriggerClientEvent('zxn-communityservice:client:inCommunityService', target, actions_count)
-    TriggerClientEvent('QBCore:Notify', target, 'You have been sentenced to '..actions_count.. ' month(s) of community service')
+    TriggerClientEvent('zxn-communityservice:client:inCommunityService', target, actions_count)
+    TriggerClientEvent('QBCore:Notify', target, 'You have been sentenced to '..actions_count..' month(s) of community service')
 end)
 
 RegisterServerEvent('zxn-communityservice:server:checkIfSentenced')
@@ -195,7 +195,7 @@ QBCore.Commands.Add("pcomserv", "Put a player into community service (Police Onl
 		end
     else
         TriggerClientEvent("QBCore:Notify", src, 'You are not a police officer!', "error")
-	end
+    end
 end)
 
 QBCore.Commands.Add("comserv", "Put a player into community service (Admin Only)", {{name="id", help="Player ID"}, {name="count", help="Community Service mount"}}, true, function(source, args) -- name, help, arguments, argsrequired,  end sonuna persmission
