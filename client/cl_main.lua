@@ -15,7 +15,7 @@ local spatulamodel = "bkr_prop_coke_spatula_04"
 local spatula_net = nil
 
 RegisterNetEvent('QBCore:Client:OnPlayerLoaded', function()
-	Wait(1000)
+	Wait(1500)
     PlayerData = QBCore.Functions.GetPlayerData()
 	TriggerServerEvent('zxn-communityservice:server:checkIfSentenced')
 end)
@@ -93,6 +93,16 @@ local function RemoveAction(action)
 	end
 end
 
+local function ChangeOutfit()
+    local ped = PlayerPedId()
+    local gender = QBCore.Functions.GetPlayerData().charinfo.gender
+    if gender == 0 then
+        TriggerEvent('qb-clothing:client:loadOutfit', Config.Uniforms.male)
+    else
+        TriggerEvent('qb-clothing:client:loadOutfit', Config.Uniforms.female)
+    end
+end
+
 local function DisplayHelpText(str)
 	SetTextComponentFormat("STRING")
 	AddTextComponentString(str)
@@ -155,6 +165,7 @@ AddEventHandler('zxn-communityservice:client:inCommunityService', function(actio
 	actionsRemaining = actions_remaining
 
 	FillActionTable()
+	ChangeOutfit()
 
 	SetEntityCoords(PlayerPedId(), Config.ServiceLocation.x, Config.ServiceLocation.y, Config.ServiceLocation.z)
 	SetEntityHeading(PlayerPedId(), Config.ServiceLocation.h)
@@ -210,7 +221,7 @@ AddEventHandler('zxn-communityservice:client:sendToCommunityService', function()
                 local distance = GetDistanceBetweenCoords(pCoords, availableActions[i].coords, true)
                 exports['qb-core']:DrawText(Lang:t('text.to_be_finished', {actionCount=actionsRemaining}), 'left')
                 if distance < 1.5 then
-                    DrawText3D(availableActions[i].coords.x, availableActions[i].coords.y, availableActions[i].coords.z, "[E]")
+                    DrawText3D(availableActions[i].coords.x, availableActions[i].coords.y, availableActions[i].coords.z, "Press [E] to do job")
 
                     if(IsControlJustReleased(1, 38))then
                         exports['qb-core']:HideText()
@@ -234,7 +245,7 @@ AddEventHandler('zxn-communityservice:client:sendToCommunityService', function()
                                 end)
 
 								
-								QBCore.Functions.Progressbar("cleaning", Lang:t('progressbar.cleaning'), 10000, false, false, {}, {}, {}, {}, function() -- Done
+								QBCore.Functions.Progressbar("cleaning", Lang:t('progressbar.cleaning'), 9900, false, false, {}, {}, {}, {}, function() -- Done
                                     disable_actions = false
                                     DetachEntity(NetToObj(broom_net), 1, 1)
                                     DeleteEntity(NetToObj(broom_net))
@@ -256,7 +267,7 @@ AddEventHandler('zxn-communityservice:client:sendToCommunityService', function()
                             spatula_net = netid
 
 								
-							QBCore.Functions.Progressbar("gardening", Lang:t('progressbar.gardening'), 14000, false, false, {}, {}, {}, {}, function() -- Done
+							QBCore.Functions.Progressbar("gardening", Lang:t('progressbar.gardening'), 12000, false, false, {}, {}, {}, {}, function() -- Done
                                 disable_actions = false
                                 DetachEntity(NetToObj(spatula_net), 1, 1)
                                 DeleteEntity(NetToObj(spatula_net))
