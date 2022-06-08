@@ -38,12 +38,12 @@ Config.Uniforms = {
 		}
 	},
 	['female'] = {
-	 	outfitData = {
+		outfitData = {
 			['t-shirt'] = {item = 15, texture = 0},
 			['torso2']  = {item = 141, texture = 2},
 			['arms']    = {item = 83, texture = 0},
 			['pants']   = {item = 3, texture = 15},
 			['shoes']   = {item = 16, texture = 0},
-	 	}
+		}
 	},
 }
